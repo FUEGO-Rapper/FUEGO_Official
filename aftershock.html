@@ -7,6 +7,12 @@
 
 <body>
 
+<!-- INTRO SCREEN -->
+<div id="introScreen">
+    <div class="introText">AFTERSHOCK</div>
+</div>
+
+<!-- IMPACT SCREEN -->
 <div id="impactScreen">
     <div id="impactFlash"></div>
     <div id="impactCircle"></div>
@@ -55,7 +61,6 @@ function resize(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
-
 resize();
 window.addEventListener("resize", resize);
 
@@ -80,7 +85,6 @@ function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
     for(let i = 0; i < particles.length; i++){
-
         let p = particles[i];
 
         p.y -= p.speedY;
@@ -101,16 +105,29 @@ function draw(){
 
     requestAnimationFrame(draw);
 }
-
 draw();
 
-setTimeout(() => {
-    const impact = document.getElementById("impactScreen");
+/* =========================
+   CINEMATIC SEQUENCE CONTROL
+========================= */
 
-    if(impact){
-        impact.style.display = "none";
-    }
-}, 3500);
+const intro = document.getElementById("introScreen");
+const impact = document.getElementById("impactScreen");
+
+/* STEP 1: hide intro after animation */
+setTimeout(() => {
+    intro.style.display = "none";
+
+    /* STEP 2: trigger impact */
+    impact.classList.add("active");
+
+}, 3000);
+
+/* STEP 3: remove impact after it finishes */
+setTimeout(() => {
+    impact.style.display = "none";
+}, 4500);
+
 </script>
 
 </body>
