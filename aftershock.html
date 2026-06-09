@@ -59,6 +59,15 @@ function draw(){
 
 draw();
 </script>
+    <script>
+// keeps intro from blocking clicks after fade
+setTimeout(() => {
+    const intro = document.getElementById("introScreen");
+    if(intro){
+        intro.style.display = "none";
+    }
+}, 4500);
+</script>
 <body>
 <canvas id="fireCanvas"></canvas>
     <div id="introScreen">
