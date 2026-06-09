@@ -1,91 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AFTERSHOCK</title>
-<link rel="stylesheet" href="style.css">
+    <title>AFTERSHOCK</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<script>
-const canvas = document.getElementById("fireCanvas");
-const ctx = canvas.getContext("2d");
 
-function resize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-const particles = [];
-
-function createParticle(){
-    return {
-        x: Math.random() * canvas.width,
-        y: canvas.height + Math.random() * 50,
-        size: Math.random() * 4 + 1,
-        speedY: Math.random() * 2 + 1,
-        speedX: (Math.random() - 0.5) * 1,
-        alpha: Math.random() * 0.5 + 0.2
-    };
-}
-
-for(let i=0;i<80;i++){
-    particles.push(createParticle());
-}
-
-function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    for(let i=0;i<particles.length;i++){
-        let p = particles[i];
-
-        p.y -= p.speedY;
-        p.x += p.speedX;
-
-        if(p.y < -10){
-            particles[i] = createParticle();
-            continue;
-        }
-
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(255, 100, 0, ${p.alpha})`;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = "#ff4d00";
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-
-    requestAnimationFrame(draw);
-}
-
-draw();
-</script>
-    <script>
-// keeps intro from blocking clicks after fade
-setTimeout(() => {
-    const intro = document.getElementById("introScreen");
-    if(intro){
-        intro.style.display = "none";
-    }
-}, 4500);
-</script>
-    <script>
-setTimeout(() => {
-    const impact = document.getElementById("impactScreen");
-
-    if(impact){
-        impact.style.display = "none";
-    }
-}, 3000);
-</script>
 <body>
-    <div id="impactScreen">
+
+<div id="impactScreen">
+    <div id="impactFlash"></div>
     <div id="impactCircle"></div>
     <div id="impactTitle">AFTERSHOCK</div>
 </div>
+
 <canvas id="fireCanvas"></canvas>
-    <div id="introScreen">
-    <div class="introText">FUEGO</div>
-</div>
+
 <nav>
     <a href="index.html">Home</a>
     <a href="aftershock.html">AFTERSHOCK</a>
@@ -107,8 +36,8 @@ setTimeout(() => {
     <div class="card">
         <h2>Info</h2>
         <p>
-            The impact has already happened.  
-            The aftermath is still forming.  
+            The impact has already happened.<br>
+            The aftermath is still forming.<br>
             What comes next will change everything.
         </p>
     </div>
@@ -117,6 +46,72 @@ setTimeout(() => {
 <footer>
     Keep watching.
 </footer>
+
+<script>
+const canvas = document.getElementById("fireCanvas");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+resize();
+window.addEventListener("resize", resize);
+
+const particles = [];
+
+function createParticle(){
+    return {
+        x: Math.random() * canvas.width,
+        y: canvas.height + Math.random() * 50,
+        size: Math.random() * 4 + 1,
+        speedY: Math.random() * 2 + 1,
+        speedX: (Math.random() - 0.5),
+        alpha: Math.random() * 0.5 + 0.2
+    };
+}
+
+for(let i = 0; i < 80; i++){
+    particles.push(createParticle());
+}
+
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    for(let i = 0; i < particles.length; i++){
+
+        let p = particles[i];
+
+        p.y -= p.speedY;
+        p.x += p.speedX;
+
+        if(p.y < -10){
+            particles[i] = createParticle();
+            continue;
+        }
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,100,0,${p.alpha})`;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "#ff4d00";
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+
+setTimeout(() => {
+    const impact = document.getElementById("impactScreen");
+
+    if(impact){
+        impact.style.display = "none";
+    }
+}, 3500);
+</script>
 
 </body>
 </html>
