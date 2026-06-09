@@ -221,3 +221,81 @@ footer{
         transform:translateY(0) scale(1);
     }
 }
+/* AFTERSHOCK IMPACT ANIMATION */
+
+#impactScreen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    z-index:99999;
+    animation: impactFade 3s forwards;
+}
+
+#impactCircle{
+    position:absolute;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#ff6a00;
+    box-shadow:
+        0 0 50px #ff6a00,
+        0 0 100px #ff4d00,
+        0 0 200px #ff2a00;
+    animation: shockwave 1s ease-out forwards;
+}
+
+#impactTitle{
+    position:relative;
+    font-size:6rem;
+    font-weight:bold;
+    color:white;
+    letter-spacing:8px;
+    opacity:0;
+    text-shadow:
+        0 0 20px #ff6a00,
+        0 0 40px #ff4d00;
+    animation: titleReveal 1s forwards;
+    animation-delay:0.8s;
+}
+
+@keyframes shockwave{
+    from{
+        transform:scale(0);
+        opacity:1;
+    }
+
+    to{
+        transform:scale(50);
+        opacity:0;
+    }
+}
+
+@keyframes titleReveal{
+    from{
+        opacity:0;
+        transform:scale(0.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes impactFade{
+    0%,85%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        visibility:hidden;
+    }
+}
