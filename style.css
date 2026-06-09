@@ -141,3 +141,49 @@ footer{
     0%{opacity:1;}
     100%{opacity:0; visibility:hidden;}
 }
+.logoContainer{
+    text-align:center;
+    animation: logoRise 2s ease-out;
+}
+
+.logoFire{
+    font-size:4rem;
+    margin-bottom:10px;
+    animation: flameBounce 1.5s infinite;
+}
+
+.logoTagline{
+    color:#aaa;
+    letter-spacing:4px;
+    margin-top:10px;
+    font-size:0.9rem;
+    opacity:0;
+    animation: taglineAppear 1s forwards;
+    animation-delay:1s;
+}
+
+@keyframes logoRise{
+    from{
+        transform:translateY(50px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+@keyframes flameBounce{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+@keyframes taglineAppear{
+    to{
+        opacity:1;
+    }
+}
