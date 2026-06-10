@@ -1,4 +1,59 @@
 <main class="section">
+    <script>
+const canvas = document.getElementById("fireCanvas");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+const particles = [];
+
+function createParticle(){
+    return{
+        x:Math.random()*canvas.width,
+        y:canvas.height + Math.random()*100,
+        size:Math.random()*4+1,
+        speedY:Math.random()*2+1,
+        speedX:(Math.random()-0.5)*0.5,
+        alpha:Math.random()*0.6+0.2
+    };
+}
+
+for(let i=0;i<100;i++){
+    particles.push(createParticle());
+}
+
+function animate(){
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach((p,index)=>{
+
+        p.y -= p.speedY;
+        p.x += p.speedX;
+
+        if(p.y < -20){
+            particles[index] = createParticle();
+        }
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,100,0,${p.alpha})`;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "#ff6600";
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+    <body>
     <canvas id="fireCanvas"></canvas>
 <nav>
     <a href="index.html">Home</a>
