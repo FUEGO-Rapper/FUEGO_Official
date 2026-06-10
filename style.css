@@ -275,3 +275,160 @@ footer{
 .section p{
     font-size:1.1rem;
 }
+/* =========================
+   GLOBAL
+========================= */
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================
+   FIRE PARTICLE CANVAS
+========================= */
+
+#fireCanvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    pointer-events:none;
+}
+
+/* =========================
+   GLOW BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(circle at bottom,
+        rgba(255,80,0,0.25),
+        transparent 55%);
+    z-index:-3;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+    text-align:center;
+    padding:20px;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(5px);
+    border-bottom:1px solid rgba(255,100,0,0.4);
+}
+
+nav a{
+    color:#ff7b00;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:white;
+    text-shadow:
+        0 0 10px #ff6600,
+        0 0 20px #ff6600;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+main{
+    max-width:900px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1{
+    text-align:center;
+    font-size:3rem;
+    color:#ff6a00;
+    text-shadow:
+        0 0 10px #ff6a00,
+        0 0 25px #ff6a00;
+}
+
+h2{
+    color:#ff7b00;
+    margin-top:40px;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+p{
+    line-height:1.8;
+    font-size:1.1rem;
+    color:#ddd;
+}
+
+/* =========================
+   BLOCKQUOTE
+========================= */
+
+blockquote{
+    margin:40px auto;
+    padding:25px;
+    border-left:4px solid #ff6a00;
+    background:rgba(255,100,0,0.08);
+    border-radius:10px;
+    font-style:italic;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+    background:rgba(255,100,0,0.08);
+    border:1px solid rgba(255,120,0,0.3);
+    border-radius:15px;
+    padding:25px;
+    margin:25px 0;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:
+        0 0 15px rgba(255,100,0,0.3);
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#ff6600;
+    border-radius:10px;
+}
